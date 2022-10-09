@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import Buttons from "./Buttons";
+import ResultComponent from "./ResultComponent";
+import React, { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+        const [state, setState] = useState("");
+
+        let calculate = () => {
+            setState((eval(state) || "" ) + "")
+        };
+
+
+        let onClick = button => {
+
+        if(button === "="){
+            calculate()
+        }
+
+
+        else {
+            setState(state + button)
+        }
+        };
+
+
+
+        return (
+            <div>
+                <div className="calculator-body">
+                    <h1>Simple Calculator</h1>
+                    <ResultComponent result={state}/>
+                    <Buttons onClick={onClick}/>
+                </div>
+            </div>
+        );
 }
 
 export default App;
